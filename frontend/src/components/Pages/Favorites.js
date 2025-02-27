@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+
 import axios from 'axios';
+import { ThemeContext } from '../../Themecontext'; // Import the ThemeContext
 
 const Favorites = () => {
     const [favorites, setFavorites] = useState([]);
     const [error, setError] = useState('');
+    const { theme } = useContext(ThemeContext); // Access the current theme
 
     useEffect(() => {
         const fetchFavorites = async () => {
@@ -39,7 +42,7 @@ const Favorites = () => {
         }
     };
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className={`flex items-center justify-center min-h-screen ${theme === 'dark' ? 'bg-black text-white' : 'bg-gray-100 text-black'}`}>
         <div className="w-full max-w-6xl p-4"> {/* Set a max width for the container */}
             <h1 className="text-2xl font-bold mb-4 text-center">Your Favorite Books</h1>
             {error && <p className="text-red-500 text-center">{error}</p>}
@@ -48,7 +51,7 @@ const Favorites = () => {
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
                     {favorites.map((favorite) => (
-                        <div key={favorite._id} className="border rounded-lg p-4 shadow-md">
+                        <div key={favorite._id} className={`border rounded-lg p-4 shadow-md ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
                             <h3 className="font-semibold">{favorite.title}</h3>
                             <p>{favorite.authors.join(', ')}</p>
                             {favorite.thumbnail && (

@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body.light {
+    background-color: white;
+    color: black;
+}
+
+/* Dark mode styles */
+body.dark {
+    background-color: black;
+    color: white;
+}
+
+/* Additional styles for the app container */
+.app-container {
+    padding: 20px;
+}

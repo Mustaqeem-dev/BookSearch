@@ -5,12 +5,16 @@ import { Provider } from 'react-redux';
 import store from './store';
 import App from './App';
 import './index.css'; 
-// Create a root for the React application
+import { ThemeProvider } from './Themecontext'; // Import the ThemeProvider
+
+
 const root = ReactDOM.createRoot(document.getElementById('root')); // Use createRoot
 
 // Render the application
 root.render(
     <Provider store={store}>
-        <App />
+      <ThemeProvider>
+            <App />
+        </ThemeProvider>
     </Provider>
 );
